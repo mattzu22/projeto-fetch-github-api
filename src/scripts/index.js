@@ -1,5 +1,6 @@
 import { getRepositories } from '/src/scripts/services/repositories.js'
 import { getUser } from '/src/scripts/services/user.js'
+import { getEvents } from '/src/scripts/services/user.js'
 
 import { user } from '/src/scripts/objects/user.js'
 import { screen } from '/src/scripts/objects/screen.js'
@@ -31,7 +32,7 @@ function renderNotFound(userName){
 async function getUserData(userName) {
 
   const userResponse = await getUser(userName);
-
+ 
   if(userResponse.message === 'Not Found'){
     screen.renderNotFound()
     return
@@ -39,12 +40,25 @@ async function getUserData(userName) {
 
   const repositoriesResponse = await getRepositories(userName);
 
+  const eventsUserResponse = await getEvents(userName);
+  console.log(eventsUserResponse[16].payload.commits[0].message);
+  
   user.setInfo(userResponse);
-  user.setRepositories(repositoriesResponse)
 
-  screen.renderUser(user)
+  user.setRepositories(repositoriesResponse);
 
+  user.setEvents(eventsUserResponse);
+
+  console.log(eventsUserResponse);
+  console.log(user);
+ 
+  screen.renderUser(user);
+  
 }
+
+
+
+
 
 
 

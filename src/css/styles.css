@@ -89,7 +89,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;  
+  padding: 30px;  
 }
 
 .container .profile-data .info {
@@ -100,13 +100,18 @@ main {
 
 .container .profile-data .info .data{
   padding: 40px;
-  width: 50%;
+  width: 55%;
+}
+
+.container .profile-data .info .data .status{
+  margin-top: 20px;
+  text-align: start;
 }
 
 .container .profile-data .info img{
-  width: 50%;
+  width: 45%;
   border-radius: 50%;
-  border: 10px solid hotpink;
+  border: 10px solid rgb(135, 127, 131);
 }
 
 .container .profile-data .info h1{
