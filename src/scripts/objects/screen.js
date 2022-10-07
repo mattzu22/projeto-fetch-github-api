@@ -20,7 +20,26 @@ const screen = {
     let repositoriesItens = "";
 
     user.repositories.forEach( repo =>
-        (repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
+        (repositoriesItens += `<li>
+                                  <a href="${repo.html_url}" target="_blank">${repo.name}
+                                    <div class="info-repo">
+                                      <div class="info">
+                                        <span>🚀 ${repo.forks}</span>
+                                      </div>
+                                      <div class="info">
+                                        <span>🧑‍💻 ${repo.watchers}</span>
+                                      </div>
+                                      <div class="info">
+                                        <span>⭐ ${repo.stargazers_count}</span>
+                                      </div>
+                                      <div class="info">
+                                        <span>🧑‍🏫 ${repo.language}</span>
+                                      </div>
+                                    </div>
+                                  </a>
+                        
+                               </li>`)
+                              
     );
 
     if (user.repositories.length > 0) {
@@ -32,26 +51,38 @@ const screen = {
 
     let eventsUser = "";
 
-    user.events.forEach( eventUser => {
+    user.events.forEach( event => {
 
-        if(eventUser.payload.commits){
+        if(event.payload.commits){
         
-          eventUser.payload.commits.forEach( commit => {
+          event.payload.commits.forEach( commit => {
       
-            eventsUser += `<li>${eventUser.repo.name} - ${commit.message}</li>`
+            eventsUser += `<li>
+                            <p>
+                              <span class="name">${event.repo.name}</span> - ${commit.message}
+                            </p>
+                           </li>`
           
           })
-
-          console.log('tem commits');
         }
     });
 
     if (user.events.length > 0) {
       this.userProfile.innerHTML += `<div class="events">
-                                        <h2>Events</h2>
+                                        <h2>Eventos</h2>
                                         <ul>${eventsUser}</ul>
                                      </div>`;
                    
+    }else{
+      // pq nao funciona sem o + ?
+      this.userProfile.innerHTML += `<div class="events">
+                                        <h2>Eventos</h2>
+                                        <ul>
+                                          <li>
+                                            <h3>Nem um evento recente encontrado😣<h3>  
+                                          </li>
+                                        </ul>
+                                     </div>`;
     }
 
     

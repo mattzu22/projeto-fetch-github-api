@@ -16,16 +16,13 @@ const user = {
         this.following = gitHubUser.following
         this.followers = gitHubUser.followers
     },
-    setRepositories(repositories){
+    setInfoRepositories(repositories){
         this.repositories = repositories
     },
     setEvents(eventsUser){
         this.events = eventsUser
-        // eventsUser.forEach(event => {
-        //     this.events.nameEvent += event.repo.name
-        //   });
-        // this.events.messageEvent = eventsUser[15].commits.message
     }
+
 }
 
 

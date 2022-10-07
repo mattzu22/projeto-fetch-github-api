@@ -5,10 +5,4 @@ async function getUser(userName) {
     return await response.json();
   }
 
-  async function getEvents(userName){
-    const response = await fetch(`${baseUrl}/${userName}/events`);
-    return await response.json();
-  }
-
-  
-  export { getUser, getEvents }
+  export { getUser }

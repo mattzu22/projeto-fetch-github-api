@@ -1,6 +1,6 @@
 import { getRepositories } from '/src/scripts/services/repositories.js'
 import { getUser } from '/src/scripts/services/user.js'
-import { getEvents } from '/src/scripts/services/user.js'
+import { getEvents } from '/src/scripts/services/events.js'
 
 import { user } from '/src/scripts/objects/user.js'
 import { screen } from '/src/scripts/objects/screen.js'
@@ -39,18 +39,15 @@ async function getUserData(userName) {
   }
 
   const repositoriesResponse = await getRepositories(userName);
+  console.log(repositoriesResponse);
 
   const eventsUserResponse = await getEvents(userName);
-  console.log(eventsUserResponse[16].payload.commits[0].message);
   
   user.setInfo(userResponse);
 
-  user.setRepositories(repositoriesResponse);
-
+  user.setInfoRepositories(repositoriesResponse);
+  
   user.setEvents(eventsUserResponse);
-
-  console.log(eventsUserResponse);
-  console.log(user);
  
   screen.renderUser(user);
   
