@@ -19,7 +19,8 @@ const screen = {
 
     let repositoriesItens = "";
 
-    user.repositories.forEach( repo =>
+    user.repositories.forEach(
+      (repo) =>
         (repositoriesItens += `<li>
                                   <a href="${repo.html_url}" target="_blank">${repo.name}
                                     <div class="info-repo">
@@ -39,7 +40,6 @@ const screen = {
                                   </a>
                         
                                </li>`)
-                              
     );
 
     if (user.repositories.length > 0) {
@@ -51,20 +51,16 @@ const screen = {
 
     let eventsUser = "";
 
-    user.events.forEach( event => {
-
-        if(event.payload.commits){
-        
-          event.payload.commits.forEach( commit => {
-      
-            eventsUser += `<li>
+    user.events.forEach((event) => {
+      if (event.payload.commits) {
+        event.payload.commits.forEach((commit) => {
+          eventsUser += `<li>
                             <p>
                               <span class="name">${event.repo.name}</span> - ${commit.message}
                             </p>
-                           </li>`
-          
-          })
-        }
+                           </li>`;
+        });
+      }
     });
 
     if (user.events.length > 0) {
@@ -72,25 +68,22 @@ const screen = {
                                         <h2>Eventos</h2>
                                         <ul>${eventsUser}</ul>
                                      </div>`;
-                   
-    }else{
+    } else {
       // pq nao funciona sem o + ?
       this.userProfile.innerHTML += `<div class="events">
                                         <h2>Eventos</h2>
                                         <ul>
                                           <li>
-                                            <h3>Nem um evento recente encontrado😣<h3>  
+                                            <h3>Nem um evento recente encontrado😣</h3>  
                                           </li>
                                         </ul>
                                      </div>`;
     }
-
-    
   },
 
-  renderNotFound(){
-    this.userProfile.innerHTML = `<h3>Usuário não encontrado</h3>`
-  }
+  renderNotFound() {
+    this.userProfile.innerHTML = `<h3>Usuário não encontrado</h3>`;
+  },
 };
 
 export { screen };
