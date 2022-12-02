@@ -3,7 +3,9 @@ import { getUser } from "./services/user.js";
 import { getEvents } from "./services/events.js";
 
 import { user } from "./objects/user.js";
-import { screen } from "./objects/screen.js";
+import { screenUser } from "./objects/screen-user.js";
+import { screenRepo } from "./objects/screen-repo.js";
+import { screenEvents } from "./objects/screen-events.js";
 
 document.getElementById("btn-search").addEventListener("click", () => {
   const userName = document.getElementById("input-search").value;
@@ -47,5 +49,9 @@ async function getUserData(userName) {
 
   user.setEvents(eventsUserResponse);
 
-  screen.renderUser(user);
+  screenUser.renderUser(user);
+
+  screenRepo.renderRepositories(user)
+
+  screenEvents.renderEvents(user)
 }
